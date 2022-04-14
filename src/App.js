@@ -8,7 +8,7 @@ import FeedbackData from './data/FeedbackData';
 import { v4 as uuidv4 } from 'uuid';
 import AboutPage from './pages/AboutPage';
 import AboutIonLink from './components/shared/AboutIonLink';
-
+import { FeedbackProvider } from './context/FedbackContext';
 
 
 
@@ -28,25 +28,29 @@ function App() {
 
 
   return (
-    <Router>
-      <Header text="Feedback UI" />
-      <div className="container">
-        <Routes>
-          <Route exact path="/"
-            element={
-              <>
-                <FeedbackForm handleAdd={addFeedback} />
-                <FeedbackStats feedback={feedback} />
-                <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
-              </>
-            }
-          >
-          </Route>
-          <Route path='/about' element={<AboutPage />} />
-        </Routes>    
-      </div>
-      <AboutIonLink/>
-    </Router>
+    <FeedbackProvider>
+      <Router>
+        <Header text="Feedback UI" />
+        <div className="container">
+          <Routes>
+            <Route exact path="*"
+              element={
+                <>
+                  <FeedbackForm handleAdd={addFeedback} />
+                  <FeedbackStats feedback={feedback} />
+                  <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
+                </>
+              }
+            >
+              
+            </Route>
+            <Route path='/about' element={<AboutPage />} />
+          </Routes>
+        </div>
+        <AboutIonLink />
+      </Router>
+    </FeedbackProvider>
+
   );
 }
 

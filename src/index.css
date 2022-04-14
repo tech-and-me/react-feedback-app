@@ -65,7 +65,7 @@ header {
   background: #f4f4f4;
   width: 50px;
   height: 50px;
-  padding: 10px; 
+  padding: 10px;
   text-align: center;
   border-radius: 50%;
   font-size: 19px;
@@ -95,7 +95,7 @@ header {
   opacity: 0;
 }
 
-[type='radio']:checked ~ label {
+[type='radio']:checked~label {
   background: #ff6a95;
   color: #fff;
 }

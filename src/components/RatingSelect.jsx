@@ -1,7 +1,15 @@
-import {useState} from 'react'
+import {useState,useContext,useEffect} from 'react';
+import FeedbackContext from '../context/FeedbackContext';
 
 const RatingSelect = ({onSelect}) => {
     const [selected,setSelected] = useState(0) 
+
+    const {feedbackEditObj} = useContext(FeedbackContext);
+
+    useEffect(() => {
+        setSelected(feedbackEditObj.item.rating)
+    },[feedbackEditObj])
+
     const handleChange = (e) => {
         //this function set selected value to show Checked(highlighted) the selected radio button in this component itself.
         setSelected(+e.target.value);
